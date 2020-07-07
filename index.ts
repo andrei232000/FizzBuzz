@@ -6,7 +6,6 @@ for(i = 1; i < 1000; i++)
 {
     text = "";
 
-    //initialize
     fezz = "";
 
     if(i % 17 == 0) //reverse order
