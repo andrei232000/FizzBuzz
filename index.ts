@@ -1,3 +1,4 @@
+
 let i : number;
 let text : string;
 
@@ -130,9 +131,46 @@ const rule17 : Rule =
     }
 }
 
-const rules : Rule[] = [rule3, rule5, rule7, rule11, rule13, rule17];
+import readlineSync = require('readline-sync');
 
-for(i = 1; i <= 100; i++) //255255 applies all rules
+//const readlineSync = require('readline-sync');
+
+const MAX_NUMBER : number = readlineSync.question("Up to what number do you want to go? ");
+
+const possibleRules : Rule[] = [rule3, rule5, rule7, rule11, rule13, rule17];
+
+let rules : Rule[] = [];
+
+if(readlineSync.keyInYN("Would you like to select which rules to apply?"))
+{
+    let input : string = readlineSync.question("Please list the ids of which rules you wish to apply \n");
+    let ruleList : string[] = input.split(' ');
+    let listOfRules : number[] = [];
+    for(i = 0; i < ruleList.length; i++)
+    {
+        listOfRules.push(parseInt(ruleList[i]));
+    }
+
+    for(i = 0; i < possibleRules.length; i++)
+    {
+        let j : number;
+        for(j = 0; j < listOfRules.length; j++)
+        {
+            if(possibleRules[i].rule_id == listOfRules[j])
+            {
+                rules.push(possibleRules[i]);
+                break;
+            }
+        }
+    }
+}
+else
+{
+    rules = possibleRules;
+}
+
+
+for(i = 1; i <= MAX_NUMBER; i++) //255255 applies all rules
 {
     text = "";
 
